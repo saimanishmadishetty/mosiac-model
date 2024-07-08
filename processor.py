@@ -1006,27 +1006,17 @@ class_labels = {0: 'tench, Tinca tinca',
  998: 'ear, spike, capitulum',
  999: 'toilet tissue, toilet paper, bathroom tissue'}
 def pre_process(input):
-    print("In Custom pre_transform method")
-    print(str(input)[:20], "...", str(input)[-20:])
     img_height = 224
     img_width = 224
     img_array = np.array(Image.open(BytesIO(base64.b64decode(input))).resize((img_height, img_width)))
     transformed_input = img_array.tolist()
-    print("Custom pre transformation done")
-    print(str(transformed_input)[:20], "...", str(transformed_input)[-20:])
     return transformed_input
 
 def post_process(input):
-    print("In Custom post_transform method")
-    print(str(input)[:20], "...", str(input)[-20:])
     scores = tf.nn.softmax(input)
     class_index = np.argmax(scores)
     class_name = class_labels[class_index]
     confidence = 100 * scores[class_index]
     confidence_value = float(confidence)
     processed_response = (class_name, confidence_value)
-    print("Custom post transformation done")
-    print(str(processed_response)[:200], "...", str(processed_response)[-200:])
-    print(class_name)
-    print(confidence)
     return processed_response
