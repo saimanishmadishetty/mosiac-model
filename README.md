@@ -1,2 +1,0 @@
-# mosiac-model
-mosiac model
