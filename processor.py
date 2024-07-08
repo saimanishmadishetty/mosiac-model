@@ -1005,7 +1005,7 @@ class_labels = {0: 'tench, Tinca tinca',
  997: 'bolete',
  998: 'ear, spike, capitulum',
  999: 'toilet tissue, toilet paper, bathroom tissue'}
-def pre_transform(input):
+def pre_process(input):
     print("In Custom pre_transform method")
     print(str(input)[:20], "...", str(input)[-20:])
     img_height = 224
@@ -1016,7 +1016,7 @@ def pre_transform(input):
     print(str(transformed_input)[:20], "...", str(transformed_input)[-20:])
     return transformed_input
 
-def post_transform(input):
+def post_process(input):
     print("In Custom post_transform method")
     print(str(input)[:20], "...", str(input)[-20:])
     scores = tf.nn.softmax(input)
